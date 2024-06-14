@@ -14,10 +14,6 @@ public class GunController : MonoBehaviour
     private int _currentAmmoInClip;
     private int _ammoInReserve;
 
-    //Muzzleflash
-    public Image muzzleFlashImage;
-    public Sprite[] flashes;
-
     //Aiming
     public Vector3 normalLocalPosition;
     public Vector3 aimingLocalPosition;
@@ -122,7 +118,6 @@ public class GunController : MonoBehaviour
     private IEnumerator ShootGun()
     {
         DetermineRecoil();
-        StartCoroutine(MuzzleFlash());
 
         RaycastForEnemy();
 
@@ -147,14 +142,5 @@ public class GunController : MonoBehaviour
 
             }
         }
-    }
-
-    private IEnumerator MuzzleFlash()
-    {
-        muzzleFlashImage.sprite = flashes[Random.Range(0, flashes.Length)];
-        muzzleFlashImage.color = Color.white;
-        yield return new WaitForSeconds(0.05f);
-        muzzleFlashImage.sprite = null;
-        muzzleFlashImage.color = new Color(0, 0, 0, 0);
     }
 }
